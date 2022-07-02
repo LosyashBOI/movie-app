@@ -116,7 +116,7 @@ function MovieCard({ id, film }: movieItem) {
                             {title}
                         </Typography>
                     </CardContent>
-                    <CardActionArea component={Link} to={`movie-app/film/${id}`}>
+                    <CardActionArea component={Link} to={`film/${id}`}>
                         <Typography
                             variant="h6"
                             component="p"

@@ -15,7 +15,7 @@ ReactDOM.render(
             <Routes>
                 <Route path="/movie-app" element={<App />}>
                     <Route index element={<MainPage />} />
-                    <Route path="movie-app/film">
+                    <Route path="/movie-app/film/">
                         <Route path={':filmId'} element={<MovieCardDescr />} />
                     </Route>
                 </Route>

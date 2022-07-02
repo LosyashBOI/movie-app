@@ -15,7 +15,7 @@ function Header() {
                     justifyContent: 'space-between',
                 }}
             >
-                <Button component={Link} to="/movie-app" color="inherit">
+                <Button component={Link} to="/movie-app/" color="inherit">
                     На главную
                 </Button>
                 {/* <Button color="inherit" onClick={handleClear}>Очистить хранилище</Button> */}

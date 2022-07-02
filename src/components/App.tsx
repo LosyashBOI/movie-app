@@ -19,6 +19,7 @@ function App() {
 function MainPage() {
     return (
         <Container
+            // @ts-ignore
             maxWidth="false"
             sx={{
                 display: 'flex',

@@ -7,12 +7,12 @@ import genreList from '../data/genreList';
 import { genre, movieCard } from '../interfaces';
 
 function getFilm(id: number) {
-    return filmsList.find((item: movieCard) => item.id === id);
+    return filmsList.find((item: movieCard) => item.id === id) as movieCard;
 }
 
 function getGenres(genres: Array<number>) {
     const filmsGenres = genres.map((id) => {
-        const { name } = genreList.find((item: genre) => item.id === id);
+        const { name } = genreList.find((item: genre) => item.id === id) as genre;
         return name;
     });
 
@@ -30,6 +30,7 @@ function getVoteColor(vote: number) {
 function MovieCardDescr() {
     const { filmId } = useParams();
 
+    // @ts-ignore
     const {
         title,
         overview,

@@ -18,7 +18,9 @@ function Header() {
                 <Button component={Link} to="/movie-app/" color="inherit">
                     На главную
                 </Button>
-                {/* <Button color="inherit" onClick={handleClear}>Очистить хранилище</Button> */}
+                <Button component={Link} to="search" color="inherit">
+                    Поиск
+                </Button>
                 <LoginButton />
             </Toolbar>
         </AppBar>

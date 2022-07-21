@@ -1,15 +1,16 @@
 import { Box, Grid, Typography } from '@mui/material';
+import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { filterByUserList } from '../data/dataFilters';
 import { iStore } from '../interfaces';
 import MovieCard from './MovieCard';
 
-function MoviesList() {
+const MoviesList = memo(() => {
     const state = useSelector((state: iStore) => state);
     const { currentPage: page } = state;
 
-    const filteredList = filterByUserList(state);
+    const filteredList = useMemo(() => filterByUserList(state), [state]);
     if (filteredList.length === 0) return <NoMovies />;
 
     const pageList = [...filteredList].splice(page * 10 - 10, 10);
@@ -24,9 +25,9 @@ function MoviesList() {
             })}
         </Grid>
     );
-}
+});
 
-function NoMovies() {
+export function NoMovies() {
     return (
         <Box sx={{ height: 'fit-content', margin: '100px auto' }}>
             <Typography variant="h4" component="h2" sx={{}}>
@@ -36,4 +37,5 @@ function NoMovies() {
     );
 }
 
+MoviesList.displayName = 'MoviesList';
 export default MoviesList;

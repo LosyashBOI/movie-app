@@ -88,7 +88,6 @@ function Authorization() {
                     &laquo;Избранное&raquo; и &laquo;Смотреть позже&raquo;
                 </DialogContentText>
                 <TextField
-                    autoFocus
                     margin="dense"
                     name="login"
                     label="Логин"

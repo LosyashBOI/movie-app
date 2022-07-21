@@ -32,6 +32,12 @@ interface genre {
     name: string;
 }
 
+interface searchFilters {
+    genre: number | unknown;
+    rating: string;
+    popularity: string;
+}
+
 interface actionPage {
     type: string;
     page: number;
@@ -90,4 +96,5 @@ export type {
     genre,
     iStore,
     movieCard,
+    searchFilters,
 };

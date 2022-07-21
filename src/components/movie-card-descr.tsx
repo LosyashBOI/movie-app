@@ -3,20 +3,11 @@ import { getYear } from 'date-fns';
 import { useParams } from 'react-router-dom';
 
 import { filmsList } from '../data/filmsList';
-import genreList from '../data/genreList';
-import { genre, movieCard } from '../interfaces';
+import { movieCard } from '../interfaces';
+import { getGenres } from '../utils';
 
 function getFilm(id: number) {
     return filmsList.find((item: movieCard) => item.id === id) as movieCard;
-}
-
-function getGenres(genres: Array<number>) {
-    const filmsGenres = genres.map((id) => {
-        const { name } = genreList.find((item: genre) => item.id === id) as genre;
-        return name;
-    });
-
-    return filmsGenres.join(', ');
 }
 
 function getVoteColor(vote: number) {

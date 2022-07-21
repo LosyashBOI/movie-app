@@ -7,7 +7,7 @@ import {
     SORT_BY_RATE_UP,
 } from '../actions';
 import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/FilterSelect';
-import { iStore } from '../interfaces';
+import { iStore, searchFilters } from '../interfaces';
 import { filmsList } from './filmsList';
 
 function compare(field: string) {
@@ -68,4 +68,22 @@ export function filterByUserList(state: iStore) {
         default:
             return films;
     }
+}
+
+export function filterBySearch({ genre, popularity, rating }: searchFilters) {
+    const filteredByGenre = filmsList.filter((item) =>
+        item.genre_ids.includes(genre as number),
+    );
+
+    const filteredByRating = filteredByGenre.filter((item) => {
+        const highRating = item.vote_average >= 5;
+
+        return rating === 'high' ? highRating : !highRating;
+    });
+
+    return filteredByRating.filter((item) => {
+        const popular = item.popularity > 100 && item.vote_count > 200;
+
+        return popularity === 'popular' ? popular : !popular;
+    });
 }

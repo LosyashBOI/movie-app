@@ -10,7 +10,9 @@ import {
     IconButton,
     Typography,
 } from '@mui/material';
+import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
     addFavorite,
@@ -22,7 +24,6 @@ import {
 } from '../actions';
 import { iStore, movieCard } from '../interfaces';
 import { setStorageData, STORAGE } from '../utils';
-import { Link } from "react-router-dom";
 
 const { WATCH_LATER, FAVORITES } = STORAGE;
 
@@ -31,7 +32,7 @@ interface movieItem {
     film: movieCard;
 }
 
-function MovieCard({ id, film }: movieItem) {
+const MovieCard = memo(({ id, film }: movieItem) => {
     const dispatch = useDispatch();
     const { isLoggedIn, favorites, watchLaterList } = useSelector(
         (state: iStore) => state,
@@ -44,23 +45,26 @@ function MovieCard({ id, film }: movieItem) {
     // console.log(favorites);
     // console.log(watchLaterList);
 
-    function handleIcon(type: string) {
-        if (!isLoggedIn) {
-            dispatch(setLoggedIn(false));
-            dispatch(openAuthorization(true));
+    const handleIcon = useCallback(
+        (type: string) => {
+            if (!isLoggedIn) {
+                dispatch(setLoggedIn(false));
+                dispatch(openAuthorization(true));
 
-            return;
-        }
+                return;
+            }
 
-        switch (type) {
-            case FAVORITES:
-                dispatch(hasFavorite ? removeFavorite(id) : addFavorite(id));
-                break;
-            case WATCH_LATER:
-                dispatch(hasWatchLater ? removeWatchLater(id) : addWatchLater(id));
-                break;
-        }
-    }
+            switch (type) {
+                case FAVORITES:
+                    dispatch(hasFavorite ? removeFavorite(id) : addFavorite(id));
+                    break;
+                case WATCH_LATER:
+                    dispatch(hasWatchLater ? removeWatchLater(id) : addWatchLater(id));
+                    break;
+            }
+        },
+        [id, hasFavorite, hasWatchLater, isLoggedIn, dispatch],
+    );
 
     setStorageData(FAVORITES, favorites);
     setStorageData(WATCH_LATER, watchLaterList);
@@ -132,6 +136,8 @@ function MovieCard({ id, film }: movieItem) {
             </Card>
         </Grid>
     );
-}
+});
+
+MovieCard.displayName = 'MovieCard';
 
 export default MovieCard;

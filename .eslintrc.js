@@ -47,5 +47,14 @@ module.exports = {
                 aspects: ['invalidHref', 'preferButton'],
             },
         ],
+        'no-unused-vars': 'off',
     },
+    overrides: [
+        {
+            files: ['*.ts', '*.tsx'],
+            rules: {
+                'no-undef': 'off',
+            },
+        },
+    ],
 };

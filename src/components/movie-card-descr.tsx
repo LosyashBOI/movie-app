@@ -20,8 +20,6 @@ function getVoteColor(vote: number) {
 
 function MovieCardDescr() {
     const { filmId } = useParams();
-
-    // @ts-ignore
     const {
         title,
         overview,
@@ -37,7 +35,7 @@ function MovieCardDescr() {
     return (
         <Paper
             sx={{
-                maxWidth: '100%',
+                maxWidth: '2000px',
                 minHeight: '600px',
                 padding: '20px 50px 50px',
                 backgroundImage: `url(${bgUrl})`,

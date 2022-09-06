@@ -10,12 +10,16 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { filterBySearch } from '../data/dataFilters';
-import { getGenres } from '../utils';
-import { NoMovies } from './MoviesList';
+import { filterBySearch } from '../../data/dataFilters';
+import { getGenres } from '../../utils';
+import { NoMovies } from '../MoviesList';
+import { IFiltersState } from './interfaces';
 
-// @ts-ignore
-function FilmPreview({ filters }) {
+interface IProps {
+    filters: IFiltersState;
+}
+
+function FilmPreview({ filters }: IProps) {
     const [activeStep, setActiveStep] = useState(0);
 
     const films = filterBySearch(filters);

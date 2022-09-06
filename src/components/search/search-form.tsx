@@ -12,12 +12,27 @@ import {
     Stepper,
     Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-import genreList from '../data/genreList';
-import { genre } from '../interfaces';
+import genreList from '../../data/genreList';
+import { genre } from '../../interfaces';
+import { IFiltersState } from './interfaces';
+import { filtersState } from './search';
 
-const steps = [
+type ChangeSelect = (event: SelectChangeEvent<string | number>) => void;
+
+type Rating = (rating: number, handleChange: ChangeSelect) => JSX.Element;
+type Genre = (genre: string, handleChange: ChangeSelect) => JSX.Element;
+type Popularity = (popularity: string, handleChange: ChangeSelect) => JSX.Element;
+type FilterSelect = Rating | Genre | Popularity;
+
+interface IStep {
+    label: string;
+    name: keyof IFiltersState;
+    description: FilterSelect;
+}
+
+const steps: Array<IStep> = [
     {
         label: 'Выбор жанра',
         name: 'genre',
@@ -35,9 +50,19 @@ const steps = [
     },
 ];
 
-// @ts-ignore
-function SearchForm({ filters, setFilters, resetSearch, setSearch }) {
+interface IProps {
+    filters: IFiltersState;
+    setFilters: Dispatch<SetStateAction<IFiltersState>>;
+    setSearch: Dispatch<SetStateAction<boolean>>;
+}
+
+function SearchForm({ filters, setFilters, setSearch }: IProps) {
     const [activeStep, setActiveStep] = useState(0);
+
+    const resetSearch = () => {
+        setSearch(false);
+        setFilters(filtersState);
+    };
 
     const handleNext = (index: number) => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -74,7 +99,7 @@ function SearchForm({ filters, setFilters, resetSearch, setSearch }) {
                         <Step key={name}>
                             <StepLabel>{label}</StepLabel>
                             <StepContent>
-                                {description(filters[name] as never, handleChange as any)}
+                                {description(filters[name] as never, handleChange)}
                                 <Box sx={{ mb: 2 }}>
                                     <div>
                                         <Button
@@ -116,7 +141,7 @@ function SearchForm({ filters, setFilters, resetSearch, setSearch }) {
     );
 }
 
-function GenreSelect(genre: number, handleChange: () => void) {
+function GenreSelect(genre: number, handleChange: ChangeSelect) {
     return (
         <>
             <Typography sx={{ mb: '5px' }}>Какой жанр Вы предпочитаете?</Typography>
@@ -135,7 +160,7 @@ function GenreSelect(genre: number, handleChange: () => void) {
     );
 }
 
-function RatingSelect(rating: string, handleChange: () => void) {
+function RatingSelect(rating: string, handleChange: ChangeSelect) {
     return (
         <>
             <Typography sx={{ mb: '5px' }}>Какая оценка должна быть у фильма?</Typography>
@@ -149,7 +174,7 @@ function RatingSelect(rating: string, handleChange: () => void) {
     );
 }
 
-function PopularitySelect(popularity: string, handleChange: () => void) {
+function PopularitySelect(popularity: string, handleChange: ChangeSelect) {
     return (
         <>
             <Typography sx={{ mb: '5px' }}>

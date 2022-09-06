@@ -2,39 +2,29 @@ import { Container } from '@mui/material';
 import { useState } from 'react';
 
 import { FilmPreview } from './film-preview';
+import { IFiltersState } from './interfaces';
 import SearchForm from './search-form';
 
-const initialState = {
-    genre: '' as unknown,
+export const filtersState: IFiltersState = {
+    genre: 0,
     rating: '',
     popularity: '',
 };
 
 function Search() {
-    const [filters, setFilters] = useState(initialState);
+    const [filters, setFilters] = useState(filtersState);
     const [isSearched, setSearch] = useState(false);
-
-    const resetSearch = () => {
-        setSearch(false);
-        setFilters(initialState);
-    };
 
     return (
         <Container
-            // @ts-ignore
-            maxWidth="false"
+            maxWidth={false}
             sx={{
                 display: 'flex',
                 mt: '2rem',
                 mb: '2rem',
             }}
         >
-            <SearchForm
-                filters={filters}
-                setFilters={setFilters}
-                resetSearch={resetSearch}
-                setSearch={setSearch}
-            />
+            <SearchForm filters={filters} setFilters={setFilters} setSearch={setSearch} />
             {isSearched && <FilmPreview filters={filters} />}
         </Container>
     );

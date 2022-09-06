@@ -10,24 +10,25 @@ import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/FilterSelect';
 import { iStore, searchFilters } from '../interfaces';
 import { filmsList } from './filmsList';
 
-function compare(field: string) {
-    return (a: any, b: any) => (a[field] > b[field] ? 1 : -1);
-}
+// const POPULARITY = 'popularity';
+// const VOTE_AVERAGE = 'vote_average';
+//
+// function compare(field: keyof movieCard) {
+//     return (a: movieCard, b: movieCard) => (a[field] > b[field] ? 1 : -1);
+// }
 
 function sortedList({ sortType }: iStore) {
-    const defaultSort = [...filmsList].sort(compare('popularity')).reverse();
-
     switch (sortType) {
         case SORT_BY_FAME_UP:
-            return [...filmsList].sort(compare('popularity'));
+            return [...filmsList].sort((a, b) => a.popularity - b.popularity);
         case SORT_BY_FAME_DOWN:
-            return [...filmsList].sort(compare('popularity')).reverse();
+            return [...filmsList].sort((a, b) => b.popularity - a.popularity);
         case SORT_BY_RATE_UP:
-            return [...filmsList].sort(compare('vote_average'));
+            return [...filmsList].sort((a, b) => a.vote_average - b.vote_average);
         case SORT_BY_RATE_DOWN:
-            return [...filmsList].sort(compare('vote_average')).reverse();
+            return [...filmsList].sort((a, b) => b.vote_average - a.vote_average);
         default:
-            return defaultSort;
+            return filmsList;
     }
 }
 

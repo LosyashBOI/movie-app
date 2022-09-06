@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { App, MainPage } from './components/App';
 import { MovieCardDescr } from './components/movie-card-descr';
-import { Search } from './components/search';
+import { Search } from './components/search/search';
 import { store } from './store';
 
 ReactDOM.render(

@@ -32,15 +32,6 @@ function FilterPagination() {
                 siblingCount={0}
                 onChange={handleChange}
             />
-            {/* <Typography */}
-            {/*     sx={{ */}
-            {/*         textAlign: 'center', */}
-            {/*         fontSize: '0.875rem', */}
-            {/*         lineHeight: 1.43, */}
-            {/*     }} */}
-            {/* > */}
-            {/*     {page} из {countOfPages} */}
-            {/* </Typography> */}
         </Box>
     );
 }

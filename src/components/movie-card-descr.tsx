@@ -1,5 +1,6 @@
-import { Box, Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { getYear } from 'date-fns';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { filmsList } from '../data/filmsList';
@@ -20,6 +21,17 @@ function getVoteColor(vote: number) {
 
 function MovieCardDescr() {
     const { filmId } = useParams();
+    const windowHeight = useWindowHeight();
+
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const descrSize = isMobile ? '100%' : '35%';
+    const descrGap = isMobile ? '10px 25px 25px' : '20px 50px 50px';
+    const descrBgHeight = isMobile
+        ? `${windowHeight - 56 - 35}px`
+        : `${windowHeight - 64 - 70}px`;
+
     const {
         title,
         overview,
@@ -35,22 +47,23 @@ function MovieCardDescr() {
     return (
         <Paper
             sx={{
-                maxWidth: '2000px',
-                minHeight: '600px',
-                padding: '20px 50px 50px',
-                backgroundImage: `url(${bgUrl})`,
-                backgroundSize: 'contain',
+                maxWidth: '100%',
+                height: `${descrBgHeight}`,
+                padding: `${descrGap}`,
+                overflow: 'auto',
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right',
                 backgroundColor: '#000',
-                boxShadow: '45vw 2px 80px -4px rgba(0, 0, 0, 1) inset',
+                borderRadius: 0,
             }}
         >
-            <Box sx={{ maxWidth: '35%', color: '#fff' }}>
+            <Box maxWidth={descrSize} color={'#fff'}>
                 <Typography variant="h4" component="h2">
                     {title}
                 </Typography>
-                <Box color="#aaa" sx={{ mb: '10px' }}>
+                <Box color="#d7d7d7" sx={{ mb: '10px' }}>
                     <Typography
                         color={getVoteColor(rating)}
                         variant="subtitle1"
@@ -71,6 +84,21 @@ function MovieCardDescr() {
             </Box>
         </Paper>
     );
+}
+
+function useWindowHeight() {
+    const [height, setHeight] = useState(document.documentElement.clientHeight);
+
+    useEffect(() => {
+        function handleResize() {
+            setHeight(document.documentElement.clientHeight);
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    });
+
+    return height;
 }
 
 export { MovieCardDescr };

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setGenres, setSort, setSortUser, setYear, SORT_BY_FAME_DOWN } from '../actions';
@@ -11,6 +11,10 @@ function Filter() {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state: iStore) => state.isLoggedIn);
 
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('s'));
+    const isTablet = useMediaQuery(theme.breakpoints.down('sm'));
+
     const removeFilters = () => {
         dispatch(setYear(2020));
         dispatch(setSort(SORT_BY_FAME_DOWN));
@@ -20,8 +24,9 @@ function Filter() {
 
     return (
         <Box
+            display={isMobile ? 'none' : 'block'}
             sx={{
-                width: '200px',
+                width: `${isTablet ? '200px' : '300px'}`,
                 height: 'fit-content',
                 mr: '25px',
                 padding: '20px',

@@ -7,17 +7,17 @@ import MoviesList from './MoviesList';
 
 function App() {
     return (
-        <>
+        <Container maxWidth={false} disableGutters={true}>
             <Header />
             <Outlet />
-        </>
+        </Container>
     );
 }
 
 function MainPage() {
     return (
         <Container
-            maxWidth={false}
+            maxWidth={'lg'}
             sx={{
                 display: 'flex',
                 mt: '2rem',

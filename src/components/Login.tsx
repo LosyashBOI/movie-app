@@ -19,9 +19,14 @@ const initialUser = {
     password: '',
 };
 
-function LoginButton() {
+interface IProps {
+    btnSize: 'small' | 'medium';
+}
+
+function LoginButton({ btnSize }: IProps) {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state: iStore) => state.isLoggedIn);
+    const loginBtnColor = isLoggedIn ? 'error' : 'success';
 
     function handleOpen() {
         isLoggedIn ? dispatch(setLoggedIn(false)) : dispatch(openAuthorization(true));
@@ -29,7 +34,13 @@ function LoginButton() {
 
     return (
         <div>
-            <Button variant="contained" color="success" onClick={handleOpen}>
+            <Button
+                variant="contained"
+                color={loginBtnColor}
+                size={'small'}
+                onClick={handleOpen}
+                sx={{ boxShadow: 'none' }}
+            >
                 {isLoggedIn ? 'Выйти' : 'Войти'}
             </Button>
             <Authorization />

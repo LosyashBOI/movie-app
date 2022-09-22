@@ -6,9 +6,13 @@ import {
     CardActions,
     CardContent,
     CardMedia,
+    createTheme,
     Grid,
     IconButton,
+    ThemeProvider,
     Typography,
+    useMediaQuery,
+    useTheme,
 } from '@mui/material';
 import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -69,34 +73,43 @@ const MovieCard = memo(({ id, film }: movieItem) => {
     setStorageData(FAVORITES, favorites);
     setStorageData(WATCH_LATER, watchLaterList);
 
+    const theme = useTheme();
+    const isTablet = useMediaQuery(theme.breakpoints.down('md'));
+
+    const card = {
+        width: isTablet ? '133px' : '200px',
+        height: isTablet ? '200px' : '300px',
+        gap: isTablet ? '10px' : '20px',
+        linkPadding: isTablet ? '10px 0 10px 15px' : '15px 0 15px 30px',
+        headerSize: isTablet ? '1rem' : '1.25rem',
+    };
+
     return (
-        <Grid item xs={12} sm={6} xl={4} sx={{ height: 'fit-content' }}>
+        <Grid item xs={12} s={12} sm={6} md={6} lg={4} xl={4} flexBasis={'100%'}>
             <Card
                 sx={{
                     display: 'flex',
-                    maxWidth: '500px',
+                    height: `${card.height}`,
                     border: '1px solid rgba(0, 0, 0, .1)',
                     boxShadow: '4px 4px 8px 0px rgba(34, 60, 80, 0.2)',
                 }}
             >
                 <CardMedia
                     component="img"
-                    height="300px"
+                    height="100%"
                     image={`https://image.tmdb.org/t/p/w300${poster}`}
                     alt="film poster"
-                    sx={{ width: '200px' }}
+                    sx={{ width: `${card.width}` }}
                 />
                 <Box
-                    sx={{
-                        display: 'flex',
-                        width: '100%',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                    }}
+                    display={'flex'}
+                    flexDirection={'column'}
+                    justifyContent={'space-between'}
+                    flexBasis={'100%'}
                 >
-                    <CardContent>
-                        <CardActions sx={{ padding: 0, mb: '20px' }}>
-                            <Typography sx={{ mr: '20px' }}>Рейтинг: {vote}</Typography>
+                    <CardContent sx={{ padding: '8px 8px 0' }}>
+                        <CardActions sx={{ padding: 0, mb: `${card.gap}` }}>
+                            <Typography sx={{ mr: `${card.gap}` }}>{vote}</Typography>
                             <IconButton
                                 color="inherit"
                                 sx={{ padding: 0 }}
@@ -116,7 +129,12 @@ const MovieCard = memo(({ id, film }: movieItem) => {
                                 )}
                             </IconButton>
                         </CardActions>
-                        <Typography gutterBottom variant="h6" component="h3">
+                        <Typography
+                            gutterBottom
+                            variant={'h6'}
+                            component="h3"
+                            sx={{ fontSize: `${card.headerSize}` }}
+                        >
                             {title}
                         </Typography>
                     </CardContent>
@@ -125,8 +143,9 @@ const MovieCard = memo(({ id, film }: movieItem) => {
                             variant="h6"
                             component="p"
                             sx={{
-                                padding: '15px 0 15px 30px',
+                                padding: `${card.linkPadding}`,
                                 borderTop: '1px solid rgba(0, 0, 0, .1)',
+                                fontSize: `${card.headerSize}`,
                             }}
                         >
                             Подробнее

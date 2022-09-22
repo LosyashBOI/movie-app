@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, createTheme, Grid, Typography } from '@mui/material';
 import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -19,7 +19,7 @@ const MoviesList = memo(() => {
     // console.log(pageList);
 
     return (
-        <Grid container spacing={4} sx={{ alignContent: 'start' }}>
+        <Grid container spacing={2} sx={{ alignContent: 'start' }}>
             {pageList.map((item) => {
                 return <MovieCard key={item.id} id={item.id} film={item} />;
             })}

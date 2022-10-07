@@ -24,7 +24,7 @@ import {
     actionSortUser,
     actionWatchLater,
     actionYear,
-} from './interfaces';
+} from '../interfaces';
 
 function currentPage(state = 1, action: actionPage) {
     switch (action.type) {

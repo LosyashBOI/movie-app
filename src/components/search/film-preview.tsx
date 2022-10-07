@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 import { filterBySearch } from '../../data/dataFilters';
 import { getGenres } from '../../utils';
-import { NoMovies } from '../MoviesList';
+import { NoMovies } from '../movies/MoviesList';
 import { IFiltersState } from './interfaces';
 
 interface IProps {

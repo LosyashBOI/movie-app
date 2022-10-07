@@ -17,9 +17,10 @@ function Search() {
 
     return (
         <Container
-            maxWidth={false}
+            maxWidth={'lg'}
             sx={{
                 display: 'flex',
+                flexDirection: 'column',
                 mt: '2rem',
                 mb: '2rem',
             }}

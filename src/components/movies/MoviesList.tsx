@@ -2,8 +2,8 @@ import { Box, createTheme, Grid, Typography } from '@mui/material';
 import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { filterByUserList } from '../data/dataFilters';
-import { iStore } from '../interfaces';
+import { filterByUserList } from '../../data/dataFilters';
+import { iStore } from '../../interfaces';
 import MovieCard from './MovieCard';
 
 const MoviesList = memo(() => {

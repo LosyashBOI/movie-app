@@ -3,9 +3,9 @@ import { getYear } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { filmsList } from '../data/filmsList';
-import { movieCard } from '../interfaces';
-import { getGenres } from '../utils';
+import { filmsList } from '../../data/filmsList';
+import { movieCard } from '../../interfaces';
+import { getGenres } from '../../utils';
 
 function getFilm(id: number) {
     return filmsList.find((item: movieCard) => item.id === id) as movieCard;

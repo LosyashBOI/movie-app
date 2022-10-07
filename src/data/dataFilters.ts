@@ -5,8 +5,8 @@ import {
     SORT_BY_FAME_UP,
     SORT_BY_RATE_DOWN,
     SORT_BY_RATE_UP,
-} from '../actions';
-import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/FilterSelect';
+} from '../redux/actions';
+import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/filter/FilterSelect';
 import { iStore, searchFilters } from '../interfaces';
 import { filmsList } from './filmsList';
 

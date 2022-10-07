@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { App, MainPage } from './components/App';
-import { MovieCardDescr } from './components/movie-card-descr';
+import { MovieCardDescr } from './components/movies/movie-card-descr';
 import { Search } from './components/search/search';
-import { store } from './store';
+import { store } from './redux/store';
 
 declare module '@mui/material/styles' {
     interface BreakpointOverrides {

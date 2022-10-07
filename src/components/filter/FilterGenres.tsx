@@ -8,9 +8,9 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setGenres } from '../actions';
-import genreList from '../data/genreList';
-import { genre, iStore } from '../interfaces';
+import { setGenres } from '../../redux/actions';
+import genreList from '../../data/genreList';
+import { genre, iStore } from '../../interfaces';
 
 function FilterGenres() {
     const dispatch = useDispatch();

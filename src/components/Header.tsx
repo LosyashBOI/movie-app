@@ -30,7 +30,7 @@ function Header() {
                         color="inherit"
                         size={'small'}
                     >
-                        На главную
+                        Главная
                     </Button>
                     <Button component={Link} to="search" color="inherit" size={'small'}>
                         Поиск

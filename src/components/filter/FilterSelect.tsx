@@ -18,8 +18,8 @@ import {
     SORT_BY_FAME_UP,
     SORT_BY_RATE_DOWN,
     SORT_BY_RATE_UP,
-} from '../actions';
-import { iStore } from '../interfaces';
+} from '../../redux/actions';
+import { iStore } from '../../interfaces';
 
 export const SORT_WATCH_LATER = 'SORT_WATCH_LATER';
 export const SORT_FAVORITES = 'SORT_FAVORITES';

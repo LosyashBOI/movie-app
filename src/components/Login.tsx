@@ -10,7 +10,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { openAuthorization, setLoggedIn } from '../actions';
+import { openAuthorization, setLoggedIn } from '../redux/actions';
 import { iStore } from '../interfaces';
 import { setStorageData, STORAGE } from '../utils';
 

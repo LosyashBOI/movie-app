@@ -1,8 +1,14 @@
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setGenres, setSort, setSortUser, setYear, SORT_BY_FAME_DOWN } from '../actions';
-import { iStore } from '../interfaces';
+import { iStore } from '../../interfaces';
+import {
+    setGenres,
+    setSort,
+    setSortUser,
+    setYear,
+    SORT_BY_FAME_DOWN,
+} from '../../redux/actions';
 import FilterGenres from './FilterGenres';
 import FilterPagination from './FilterPagination';
 import { FilterByDate, SortByPopularity, SortByUserList } from './FilterSelect';

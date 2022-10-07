@@ -25,9 +25,9 @@ import {
     removeFavorite,
     removeWatchLater,
     setLoggedIn,
-} from '../actions';
-import { iStore, movieCard } from '../interfaces';
-import { setStorageData, STORAGE } from '../utils';
+} from '../../redux/actions';
+import { iStore, movieCard } from '../../interfaces';
+import { setStorageData, STORAGE } from '../../utils';
 
 const { WATCH_LATER, FAVORITES } = STORAGE;
 

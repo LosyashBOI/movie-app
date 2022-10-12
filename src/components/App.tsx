@@ -19,7 +19,7 @@ function App() {
 function MainPage() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('s'));
-    const [isFilterVisible, setFilterVisibility] = useState(!isMobile);
+    const [isFilterVisible, setFilterVisibility] = useState(false);
 
     const toggleBtn = () => {
         setFilterVisibility(!isFilterVisible);
@@ -38,7 +38,7 @@ function MainPage() {
             {isMobile && (
                 <FilterButton isFilterVisible={isFilterVisible} toggleBtn={toggleBtn} />
             )}
-            {isFilterVisible && <Filter />}
+            {(isFilterVisible || !isMobile) && <Filter />}
             <MoviesList />
             {isMobile && <FilterPagination />}
         </Container>

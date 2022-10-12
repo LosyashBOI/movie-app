@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { iStore } from '../../interfaces';
 import {
     setPage,
     setSort,
@@ -19,7 +20,6 @@ import {
     SORT_BY_RATE_DOWN,
     SORT_BY_RATE_UP,
 } from '../../redux/actions';
-import { iStore } from '../../interfaces';
 
 export const SORT_WATCH_LATER = 'SORT_WATCH_LATER';
 export const SORT_FAVORITES = 'SORT_FAVORITES';

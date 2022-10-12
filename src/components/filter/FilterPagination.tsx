@@ -2,9 +2,9 @@ import { Box, Pagination } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setPage } from '../../redux/actions';
 import { filterByUserList } from '../../data/dataFilters';
 import { iStore } from '../../interfaces';
+import { setPage } from '../../redux/actions';
 
 function FilterPagination() {
     const state = useSelector((state: iStore) => state);

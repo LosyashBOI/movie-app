@@ -1,13 +1,13 @@
 import { getYear } from 'date-fns';
 
+import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/filter/FilterSelect';
+import { iStore, searchFilters } from '../interfaces';
 import {
     SORT_BY_FAME_DOWN,
     SORT_BY_FAME_UP,
     SORT_BY_RATE_DOWN,
     SORT_BY_RATE_UP,
 } from '../redux/actions';
-import { SORT_FAVORITES, SORT_WATCH_LATER } from '../components/filter/FilterSelect';
-import { iStore, searchFilters } from '../interfaces';
 import { filmsList } from './filmsList';
 
 // const POPULARITY = 'popularity';

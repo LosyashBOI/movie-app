@@ -1,6 +1,17 @@
 import { combineReducers } from 'redux';
 
 import {
+    actionFavorites,
+    actionGenreList,
+    actionIsAuthorization,
+    actionIsLoggedIn,
+    actionPage,
+    actionSort,
+    actionSortUser,
+    actionWatchLater,
+    actionYear,
+} from '../interfaces';
+import {
     ADD_FAVORITE,
     ADD_WATCH_LATER,
     OPEN_AUTHORIZATION,
@@ -14,17 +25,6 @@ import {
     SET_YEAR,
     SORT_BY_FAME_DOWN,
 } from './actions';
-import {
-    actionFavorites,
-    actionGenreList,
-    actionIsAuthorization,
-    actionIsLoggedIn,
-    actionPage,
-    actionSort,
-    actionSortUser,
-    actionWatchLater,
-    actionYear,
-} from '../interfaces';
 
 function currentPage(state = 1, action: actionPage) {
     switch (action.type) {

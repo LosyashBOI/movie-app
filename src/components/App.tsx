@@ -1,4 +1,5 @@
-import { Container, useMediaQuery, useTheme } from '@mui/material';
+import { Button, Container, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Filter from './filter/Filter';
@@ -18,6 +19,11 @@ function App() {
 function MainPage() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('s'));
+    const [isFilterVisible, setFilterVisibility] = useState(!isMobile);
+
+    const toggleBtn = () => {
+        setFilterVisibility(!isFilterVisible);
+    };
 
     return (
         <Container
@@ -29,10 +35,31 @@ function MainPage() {
                 mb: '2rem',
             }}
         >
-            <Filter />
+            {isMobile && (
+                <FilterButton isFilterVisible={isFilterVisible} toggleBtn={toggleBtn} />
+            )}
+            {isFilterVisible && <Filter />}
             <MoviesList />
             {isMobile && <FilterPagination />}
         </Container>
+    );
+}
+
+interface IFilterBtn {
+    isFilterVisible: boolean;
+    toggleBtn: () => void;
+}
+
+function FilterButton({ isFilterVisible, toggleBtn }: IFilterBtn) {
+    return (
+        <Button
+            variant="contained"
+            onClick={toggleBtn}
+            size={'large'}
+            sx={{ marginBottom: '20px' }}
+        >
+            {isFilterVisible ? 'Скрыть фильтры' : 'Показать фильтры'}
+        </Button>
     );
 }
 

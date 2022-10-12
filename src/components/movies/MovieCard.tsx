@@ -18,6 +18,7 @@ import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { iStore, movieCard } from '../../interfaces';
 import {
     addFavorite,
     addWatchLater,
@@ -26,7 +27,6 @@ import {
     removeWatchLater,
     setLoggedIn,
 } from '../../redux/actions';
-import { iStore, movieCard } from '../../interfaces';
 import { setStorageData, STORAGE } from '../../utils';
 
 const { WATCH_LATER, FAVORITES } = STORAGE;

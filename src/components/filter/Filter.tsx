@@ -30,11 +30,10 @@ function Filter() {
 
     return (
         <Box
-            display={isMobile ? 'none' : 'block'}
             sx={{
-                width: `${isTablet ? '200px' : '300px'}`,
+                width: `${isMobile ? 'auto' : '300px'}`,
                 height: 'fit-content',
-                mr: '25px',
+                margin: `${isMobile ? '0 0 20px 0' : '0 25px 0 0'}`,
                 padding: '20px',
                 border: '1px solid rgba(0, 0, 0, .1)',
                 borderRadius: '4px',

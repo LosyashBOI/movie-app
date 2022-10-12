@@ -10,8 +10,8 @@ import {
 import { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { openAuthorization, setLoggedIn } from '../redux/actions';
 import { iStore } from '../interfaces';
+import { openAuthorization, setLoggedIn } from '../redux/actions';
 import { setStorageData, STORAGE } from '../utils';
 
 const initialUser = {

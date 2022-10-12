@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
-import { movieApp } from './reducers';
 import { getStorageData, STORAGE } from '../utils';
+import { movieApp } from './reducers';
 
 const { IS_LOGGED_IN, FAVORITES, WATCH_LATER } = STORAGE;
 
